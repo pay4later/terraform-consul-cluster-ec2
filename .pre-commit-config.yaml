@@ -1,0 +1,31 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v1.2.3
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-executables-have-shebangs
+
+  - repo: git://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.7.2
+    hooks:
+      - id: terraform_fmt
+        name: Terraform fmt
+        description: Rewrites all Terraform configuration files to a canonical format.
+        entry: terraform_fmt.sh
+        language: script
+        files: (\.tf|\.tfvars)$
+        exclude: \.terraform\/.*$
+      - id: terraform_docs
+        name: Terraform Docs
+        description: Inserts input and output documentation into README.md (using terraform-docs).
+        entry: terraform_docs.sh
+        language: script
+        files: (\.tf)$
+        exclude: \.terraform\/.*$
