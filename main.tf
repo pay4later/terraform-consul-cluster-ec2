@@ -133,7 +133,7 @@ resource "aws_security_group" "consul_server_ingress" {
     from_port   = 8500
     to_port     = 8500
     protocol    = "tcp"
-    cidr_blocks = ["${data.aws_vpc.current.cidr_block}", "10.128.0.0/17"]
+    cidr_blocks = ["${data.aws_vpc.current.cidr_block}"]
   }
 
   # TCP 8600 (DNS)
@@ -142,7 +142,7 @@ resource "aws_security_group" "consul_server_ingress" {
     from_port   = 8600
     to_port     = 8600
     protocol    = "tcp"
-    cidr_blocks = ["${data.aws_vpc.current.cidr_block}", "10.128.0.0/17"]
+    cidr_blocks = ["${data.aws_vpc.current.cidr_block}"]
   }
 
   # UDP 8600 (DNS)
@@ -151,7 +151,7 @@ resource "aws_security_group" "consul_server_ingress" {
     from_port   = 8600
     to_port     = 8600
     protocol    = "udp"
-    cidr_blocks = ["${data.aws_vpc.current.cidr_block}", "10.128.0.0/17"]
+    cidr_blocks = ["${data.aws_vpc.current.cidr_block}"]
   }
 
   # SSH access
@@ -160,7 +160,7 @@ resource "aws_security_group" "consul_server_ingress" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${data.aws_vpc.current.cidr_block}", "10.128.0.0/17"]
+    cidr_blocks = ["${data.aws_vpc.current.cidr_block}"]
   }
 
   # ICMP
@@ -169,7 +169,7 @@ resource "aws_security_group" "consul_server_ingress" {
     from_port   = -1
     to_port     = -1
     protocol    = "icmp"
-    cidr_blocks = ["${data.aws_vpc.current.cidr_block}", "10.128.0.0/17"]
+    cidr_blocks = ["${data.aws_vpc.current.cidr_block}"]
   }
 
   # outbound internet access
