@@ -36,7 +36,7 @@ WantedBy=multi-user.target
 EOF
 
 cat <<EOF > /etc/default/consul
-OPTIONS="-server -data-dir=/tmp/consul -client=$(hostname -i) -datacenter=${aws_region} -bootstrap-expect=${consul_server_nodes} -ui -retry-join='provider=aws region=${aws_region} addr_type=private_v4 tag_key=consul:clusters:nodes tag_value=${consul_cluster_name}'"
+OPTIONS="-server -data-dir=/tmp/consul -client=$(hostname -i) -datacenter=${aws_region} -bootstrap-expect=${consul_server_nodes} -ui -retry-join='provider=aws region=${aws_region} addr_type=private_v4 tag_key=io.opsgang.consul:clusters:nodes tag_value=${consul_cluster_name}'"
 EOF
 
 systemctl daemon-reload

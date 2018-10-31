@@ -235,9 +235,9 @@ resource "aws_instance" "consul_server_instance" {
 
   tags = "${
             merge(
-              map("Name", format("%s-%s-%s-%02d", var.resource_name_prefix, "instance", random_id.entropy.hex, count.index + 1)),
-              map("consul:clusters:nodes", format("%s-%s-%s", var.resource_name_prefix, "instance", random_id.entropy.hex)),
               var.tags,
+              map("Name", format("%s-%s-%s-%02d", var.resource_name_prefix, "instance", random_id.entropy.hex, count.index + 1)),
+              map("io.opsgang.consul:clusters:nodes", format("%s-%s-%s", var.resource_name_prefix, "instance", random_id.entropy.hex)),
             )
           }"
 }
