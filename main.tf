@@ -62,7 +62,7 @@ data "aws_subnet" "private" {
   availability_zone = "${element(random_shuffle.azs.result, count.index)}"
 
   tags {
-    Tier = "Private"
+    Tier = "private"
   }
 }
 
@@ -133,7 +133,7 @@ resource "aws_security_group" "consul_server_ingress" {
     from_port   = 8500
     to_port     = 8500
     protocol    = "tcp"
-    cidr_blocks = ["${data.aws_vpc.current.cidr_block}"]
+    cidr_blocks = ["${data.aws_vpc.current.cidr_block}", "10.128.0.0/17"]
   }
 
   # TCP 8600 (DNS)
@@ -160,7 +160,7 @@ resource "aws_security_group" "consul_server_ingress" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${data.aws_vpc.current.cidr_block}"]
+    cidr_blocks = ["${data.aws_vpc.current.cidr_block}", "10.128.0.0/17"]
   }
 
   # ICMP
@@ -169,7 +169,7 @@ resource "aws_security_group" "consul_server_ingress" {
     from_port   = -1
     to_port     = -1
     protocol    = "icmp"
-    cidr_blocks = ["${data.aws_vpc.current.cidr_block}"]
+    cidr_blocks = ["${data.aws_vpc.current.cidr_block}", "10.128.0.0/17"]
   }
 
   # outbound internet access
